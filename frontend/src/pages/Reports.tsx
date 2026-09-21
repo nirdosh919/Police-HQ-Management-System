@@ -37,7 +37,7 @@ type ApiResponse = {
 
 const API =
   import.meta.env.VITE_API_URL ||
-  "http://localhost:5000/api";
+  "https://police-hq-management-backend.onrender.com/api";
 
 function formatDate(value?: string) {
   if (!value) return "—";
@@ -948,4 +948,5 @@ export default function Reports() {
     </div>
   );
 }
+
 

@@ -135,7 +135,7 @@ export default function Departments() {
     setOfficersLoading(true);
     try {
       const token = localStorage.getItem("phq_auth_token");
-      const response = await fetch("http://127.0.0.1:5000/api/departments/" + id + "/officers", {
+      const response = await fetch("https://police-hq-management-backend.onrender.com/api/departments/" + id + "/officers", {
         headers: token ? { Authorization: "Bearer " + token } : {},
       });
       const result = await response.json();
@@ -597,6 +597,7 @@ export default function Departments() {
       </div>
   );
 }
+
 
 
 

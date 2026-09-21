@@ -32,7 +32,7 @@ const API_ORIGIN =
         /\/api\/?$/,
         ""
       )
-    : "http://127.0.0.1:5000";
+    : "https://police-hq-management-backend.onrender.com";
 
 export default function EditOfficerModal({
   officer,
@@ -68,7 +68,7 @@ export default function EditOfficerModal({
 
   useEffect(() => {
     const token = localStorage.getItem("phq_auth_token");
-    fetch("http://127.0.0.1:5000/api/departments", { headers: token ? { Authorization: "Bearer " + token } : {} })
+    fetch("https://police-hq-management-backend.onrender.com/api/departments", { headers: token ? { Authorization: "Bearer " + token } : {} })
       .then((r) => r.json())
       .then((result) => { if (result.success) setDepartments((result.data || []).map((d: any) => d.name)); })
       .catch((error) => console.error("Department loading error:", error));
@@ -77,7 +77,7 @@ export default function EditOfficerModal({
 
   const [photograph, setPhotograph] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string>("");
-  const existingPhotoUrl = officer.photograph ? (officer.photograph.startsWith("http") ? officer.photograph : "http://127.0.0.1:5000" + (officer.photograph.startsWith("/") ? "" : "/") + officer.photograph) : "";
+  const existingPhotoUrl = officer.photograph ? (officer.photograph.startsWith("http") ? officer.photograph : "https://police-hq-management-backend.onrender.com" + (officer.photograph.startsWith("/") ? "" : "/") + officer.photograph) : "";
 
   const [documents, setDocuments] =
     useState<File[]>([]);
@@ -1047,6 +1047,7 @@ function formatDate(value?: string) {
     }
   );
 }
+
 
 
 

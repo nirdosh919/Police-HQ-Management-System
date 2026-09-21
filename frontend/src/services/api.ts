@@ -1,4 +1,6 @@
-﻿const API_BASE_URL = "http://127.0.0.1:5000/api";
+﻿const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://police-hq-management-backend.onrender.com/api";
 
 export async function apiFetch(
   endpoint: string,

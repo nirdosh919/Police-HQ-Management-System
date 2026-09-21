@@ -38,7 +38,7 @@ interface AuthContextValue {
 
 const API =
   import.meta.env.VITE_API_URL ||
-  "http://127.0.0.1:5000/api";
+  "https://police-hq-management-backend.onrender.com/api";
 
 const AuthContext =
   createContext<
@@ -243,3 +243,4 @@ export function useAuth() {
 
   return context;
 }
+

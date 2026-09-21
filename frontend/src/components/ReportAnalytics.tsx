@@ -24,7 +24,7 @@ type ReportData = {
 
 const API =
   import.meta.env.VITE_API_URL ||
-  "http://127.0.0.1:5000/api";
+  "https://police-hq-management-backend.onrender.com/api";
 
 export default function ReportAnalytics() {
   const [data, setData] = useState<ReportData | null>(null);
@@ -182,3 +182,4 @@ export default function ReportAnalytics() {
     </section>
   );
 }
+

@@ -161,7 +161,7 @@ function OfficerPhoto({
       try {
         const url = path.startsWith("http")
           ? path
-          : `http://127.0.0.1:5000${path.startsWith("/") ? "" : "/"}${path}`;
+          : `https://police-hq-management-backend.onrender.com${path.startsWith("/") ? "" : "/"}${path}`;
 
         const response = await fetch(url);
 
@@ -1072,7 +1072,7 @@ function ViewOfficerModal({
           /\/api\/?$/,
           ""
         )
-      : "http://127.0.0.1:5000";
+      : "https://police-hq-management-backend.onrender.com";
 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/50 p-4">
@@ -1414,6 +1414,7 @@ function formatDate(value?: string) {
     }
   );
 }
+
 
 
 

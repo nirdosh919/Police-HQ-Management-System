@@ -12,7 +12,7 @@
 
 const API =
   import.meta.env.VITE_API_URL ||
-  "http://localhost:5000/api";
+  "https://police-hq-management-backend.onrender.com/api";
 
 export async function getRecentActivity(limit = 8): Promise<AuditLog[]> {
   const token = localStorage.getItem("phq_auth_token");
@@ -36,3 +36,4 @@ export async function getRecentActivity(limit = 8): Promise<AuditLog[]> {
   const result = await response.json();
   return Array.isArray(result.data) ? result.data : [];
 }
+

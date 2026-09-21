@@ -66,7 +66,7 @@ export default function AddOfficerModal({
 
   useEffect(() => {
     const token = localStorage.getItem("phq_auth_token");
-    fetch("http://127.0.0.1:5000/api/departments", { headers: token ? { Authorization: `Bearer ${token}` } : {} })
+    fetch("https://police-hq-management-backend.onrender.com/api/departments", { headers: token ? { Authorization: `Bearer ${token}` } : {} })
       .then((r) => r.json())
       .then((result) => { if (result.success) setDepartments((result.data || []).map((d: any) => d.name)); })
       .catch((error) => console.error("Department loading error:", error));
@@ -548,6 +548,7 @@ function TextAreaField({
     </div>
   );
 }
+
 
 
 
