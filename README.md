@@ -176,3 +176,10 @@ Police-HQ-Management-System/
 
 └── .gitignore
 
+
+## Project Links
+
+- Live Website: https://police-hq-management-system.vercel.app
+- GitHub Repository: https://github.com/nirdosh919/Police-HQ-Management-System
+- Backend API: https://police-hq-management-backend.onrender.com
+- API Health Check: https://police-hq-management-backend.onrender.com/api/health
