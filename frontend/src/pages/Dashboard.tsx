@@ -10,7 +10,7 @@ import {
   AlertCircle
 } from "lucide-react";
 
-const API_BASE = `${window.location.protocol}//${window.location.hostname}:5000/api`;
+const API_BASE = import.meta.env.VITE_API_URL || "https://police-hq-management-backend.onrender.com/api";
 
 interface Officer {
   _id?: string;
@@ -416,3 +416,4 @@ export default function Dashboard() {
     </div>
   );
 }
+
