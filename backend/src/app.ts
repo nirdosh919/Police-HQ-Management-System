@@ -19,6 +19,7 @@ import reportRoutes from "./routes/report.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
 import headquartersRoutes from "./routes/headquarters.routes";
 import policeStationRoutes from "./routes/policeStation.routes";
+
 const app = express();
 
 app.use(
@@ -26,11 +27,29 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        imgSrc: ["'self'", "data:", "blob:", "http://localhost:5000", "http://127.0.0.1:5000"],
-        connectSrc: ["'self'", "http://localhost:5000", "http://127.0.0.1:5000"],
+
+        imgSrc: [
+          "'self'",
+          "data:",
+          "blob:",
+          "http://localhost:5000",
+          "http://127.0.0.1:5000",
+          "https://police-hq-management-backend.onrender.com",
+        ],
+
+        connectSrc: [
+          "'self'",
+          "http://localhost:5000",
+          "http://127.0.0.1:5000",
+          "https://police-hq-management-backend.onrender.com",
+        ],
+
         scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+
         styleSrc: ["'self'", "'unsafe-inline'", "https:"],
+
         fontSrc: ["'self'", "data:", "https:"],
+
         objectSrc: ["'none'"],
       },
     },
@@ -40,7 +59,14 @@ app.use(
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || /^(https?:\/\/)(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://police-hq-management-system.vercel.app",
+      ];
+
+      // Allow requests with no origin and allowed frontend origins
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("CORS blocked"));
@@ -82,17 +108,28 @@ app.get("/api/health", (_req, res) => {
 
 app.use(
   "/uploads",
-  express.static(
-    path.join(process.cwd(), "uploads")
-  )
+  express.static(path.join(process.cwd(), "uploads"))
 );
 
 app.use("/api/auth", authRoutes);
 
-app.use("/api/officers", authenticate, requireManagementWrite, auditRequest, officerRoutes);
-app.use("/api/departments", authenticate, requireManagementWrite, auditRequest, departmentRoutes);
-app.use("/api/audit", authenticate, auditRoutes);
+app.use(
+  "/api/officers",
+  authenticate,
+  requireManagementWrite,
+  auditRequest,
+  officerRoutes
+);
 
+app.use(
+  "/api/departments",
+  authenticate,
+  requireManagementWrite,
+  auditRequest,
+  departmentRoutes
+);
+
+app.use("/api/audit", authenticate, auditRoutes);
 
 app.use(
   "/api/attendance",
@@ -100,17 +137,34 @@ app.use(
   attendanceRoutes
 );
 
-app.use("/api/reports", authenticate, auditRequest, reportRoutes);
-app.use("/api/dashboard", authenticate, auditRequest, dashboardRoutes);
-app.use("/api/headquarters", authenticate, requireManagementWrite, auditRequest, headquartersRoutes);
-app.use("/api/police-stations", authenticate, requireManagementWrite, auditRequest, policeStationRoutes);
+app.use(
+  "/api/reports",
+  authenticate,
+  auditRequest,
+  reportRoutes
+);
+
+app.use(
+  "/api/dashboard",
+  authenticate,
+  auditRequest,
+  dashboardRoutes
+);
+
+app.use(
+  "/api/headquarters",
+  authenticate,
+  requireManagementWrite,
+  auditRequest,
+  headquartersRoutes
+);
+
+app.use(
+  "/api/police-stations",
+  authenticate,
+  requireManagementWrite,
+  auditRequest,
+  policeStationRoutes
+);
 
 export default app;
-
-
-
-
-
-
-
-
