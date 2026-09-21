@@ -6,7 +6,7 @@
     : {};
 };
 
-const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000/api`;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://police-hq-management-backend.onrender.com/api";
 
 export interface Promotion {
   rank: string;
@@ -266,6 +266,7 @@ export async function deleteOfficerDocument(
 
   return result.data;
 }
+
 
 
 
